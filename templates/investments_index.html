@@ -1,0 +1,18 @@
+<!-- templates/investments_index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to Homely Properties!</h1>
+    <h2>Secure your Financial Future</h2>
+    <ol>
+    {% for investment in investments %}
+            <li><h3>{{ investment.name }}</h3>
+            <img src= {{ investment.picture }} />
+            <h4>{{ investment.address }}</h4>
+            <h5>${{ investment.value }}</h5>
+            <p>Status: {{ investment.status }}</p>
+            <p>{{ investment.address }}</p>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}
