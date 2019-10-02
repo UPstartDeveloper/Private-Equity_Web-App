@@ -4,6 +4,7 @@
 {% block content %}
     <h1>Welcome to Homely Properties!</h1>
     <h2>Secure your Financial Future</h2>
+
     <ol>
     {% for investment in investments %}
             <li><h3>{{ investment.name }}</h3>
@@ -12,6 +13,11 @@
             <h5>${{ investment.value }}</h5>
             <p>Status: {{ investment.status }}</p>
             <p>{{ investment.address }}</p>
+            {% if investment.status == "OPEN" %}
+                <form action="{{ url_for('investments_new') }}">
+                    <button type="create">Invest Now!</button>
+                </form>
+            {% endif %}
         </li>
     {% endfor %}
     </ol>
