@@ -1,7 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, redirect, request
 
 app = Flask(__name__)
-# FLASK_APP = app  # specifying flask app
+FLASK_APP = app  # specifying flask app
 
 # MOCK ARRAY of INVESTMENT DEALS
 
