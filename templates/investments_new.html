@@ -1,0 +1,14 @@
+<!-- templates investments_new.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" action="/investments/new">
+    <fieldset>
+        <legend>Make an Offer on This Property</legend>
+        <!-- TITLE -->
+        Name: <input type="text" name="name"><br>
+        Enter your Offering: $<input type="text" name="offering"><br>
+        <button type="submit">Submit!</button>
+
+</form>
+{% endblock %}
