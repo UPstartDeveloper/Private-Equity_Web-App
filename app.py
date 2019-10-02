@@ -6,8 +6,9 @@ FLASK_APP = app  # specifying flask app
 
 client = MongoClient()
 db = client.Homely
-invements = db.investments
-
+offers = db.offers
+# investments = db.investments
+# links = db.links
 
 # list of links for property images
 links = [
@@ -54,13 +55,16 @@ def investments_index():
                            links=links)
 
 
-'''
-@app.route('/investments_new', method=['POST'])
-def investments_new_offer():
-    """Show user a form to submit offer on an investment."""
-    if request.method == 'POST':
-        #
-        return redirect(url_for('investments_index'))
-'''
+@app.route('/investments/new', methods=['GET'])
+def investments_new():
+    """Submit a new offer on a location to make an investment."""
+    if request.method == 'GET':
+        name = request.form.get('name')
+        offering = request.form.get('offering')
+        return render_template('investments_new.html',
+                                name=name,
+                                offering=offering)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
