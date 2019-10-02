@@ -1,9 +1,13 @@
 from flask import Flask, render_template, url_for, redirect, request
+from pymongo import MongoClient
 
 app = Flask(__name__)
 FLASK_APP = app  # specifying flask app
 
-# MOCK ARRAY of INVESTMENT DEALS
+client = MongoClient()
+db = client.Homely
+invements = db.investments
+
 
 # list of links for property images
 links = [
@@ -12,6 +16,8 @@ links = [
     "https://photos.zillowstatic.com/cc_ft_960/ISatojh6728i6o1000000000.jpg",
     "https://photos.zillowstatic.com/p_e/IS6eqr7il2cjge0000000000.jpg"
 ]
+
+# MOCK ARRAY of INVESTMENT DEALS
 investments = [
     {'name': 'Dallas, TX Property',
      'picture': links[0],
@@ -48,5 +54,13 @@ def investments_index():
                            links=links)
 
 
+'''
+@app.route('/investments_new', method=['POST'])
+def investments_new_offer():
+    """Show user a form to submit offer on an investment."""
+    if request.method == 'POST':
+        #
+        return redirect(url_for('investments_index'))
+'''
 if __name__ == '__main__':
     app.run(debug=True)
