@@ -55,15 +55,11 @@ def investments_index():
 
 @app.route('/investments/new')
 def investments_new_form():
-    """Render form to enter offer on a property."""
-    name = request.form.get('name')
-    offering = request.form.get('offering')
-    return render_template('investments_new.html',
-                           name=name,
-                           offering=offering)
+    '''Render form to enter offer on a property.'''
+    return render_template('investments_new.html')
 
 
-@app.route('/investments/', methods=['GET', 'POST'])
+@app.route('/investments/new', methods=['GET', 'POST'])
 def investments_new():
     """Submit a new offer on a location to make an investment."""
     # Make a new JSON form form data
@@ -73,6 +69,12 @@ def investments_new():
     }
     # Insert into PyMongo database
     offers.insert_one(new_offer)
+
+
+@app.route('/investments/show', methods=['POST'])
+def investments_show():
+    """Show user all offers made so far."""
+    pass
 
 
 if __name__ == '__main__':
