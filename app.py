@@ -16,8 +16,8 @@ links = [
     "https://photos.zillowstatic.com/p_e/IS6eqr7il2cjge0000000000.jpg"
 ]
 
-# MOCK ARRAY of INVESTMENT DEALS *USE OF API FOR THIS COMING SOON
-investments = [
+# MOCK ARRAY of PROPERTY DEALS *USE OF API FOR THIS COMING SOON
+properties = [
     {'name': 'Dallas, TX Property',
      'picture': links[0],
      'address': '4432 Bowser Ave, Dallas, TX 75219',
@@ -46,22 +46,23 @@ investments = [
 
 
 @app.route('/')
-def investments_index():
+def properties_index():
     """Show all open and closed investment properties."""
-    return render_template('investments_index.html',
-                           investments=investments,
+    return render_template('properties_index.html',
+                           properties=properties,
                            links=links)
 
 
-@app.route('/investments/new')
-def investments_new_form():
+@app.route('/offers_new')
+def offers_new():
     '''Render form to enter offer on a property.'''
-    return render_template('investments_new.html')
+    return render_template('offers_new.html')
 
 
-@app.route('/investments/new', methods=['GET', 'POST'])
-def investments_new():
-    """Submit a new offer on a location to make an investment."""
+@app.route('/offers_show', methods=['GET', 'POST'])
+def offers_show():
+    """Submit a new offer on a location to make an investment.
+        User sees all offers made so far omn investment properties."""
     # Make a new JSON form form data
     new_offer = {
         "name": request.form.get('name'),
@@ -69,12 +70,6 @@ def investments_new():
     }
     # Insert into PyMongo database
     offers.insert_one(new_offer)
-
-
-@app.route('/investments/show', methods=['POST'])
-def investments_show():
-    """Show user all offers made so far."""
-    pass
 
 
 if __name__ == '__main__':
