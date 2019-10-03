@@ -1,0 +1,24 @@
+<!-- templates/properties_index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to Homely Properties!</h1>
+    <h2>Secure your Financial Future</h2>
+
+    <ol>
+    {% for property in properties %}
+            <li><h3>{{ property.name }}</h3>
+            <img src= {{ property.picture }} />
+            <h4>{{ property.address }}</h4>
+            <h5>${{ property.value }}</h5>
+            <p>Status: {{ property.status }}</p>
+            <p>{{ property.address }}</p>
+            {% if property.status == "OPEN" %}
+                <form action="{{ url_for('offers_new') }}">
+                    <button type="create">Invest Now!</button>
+                </form>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}
