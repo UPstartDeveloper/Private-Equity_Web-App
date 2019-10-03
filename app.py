@@ -45,7 +45,7 @@ properties = [
 ]
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def properties_index():
     """Show all open and closed investment properties."""
     return render_template('properties_index.html',

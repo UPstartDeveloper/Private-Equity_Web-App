@@ -17,8 +17,8 @@
         {% endif %}
     {% endfor %}
     </ol>
-
-
-
+    <form action="{{ url_for('properties_index') }}" method="GET">
+        <button type="go-home">Go Back to Properties</button>
+    </form>
 
 {% endblock %}
