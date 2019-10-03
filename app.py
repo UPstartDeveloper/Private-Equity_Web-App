@@ -59,7 +59,7 @@ def offers_new():
     return render_template('offers_new.html')
 
 
-@app.route('/offers_show', methods=['GET', 'POST'])
+@app.route('/offers_show', methods=['POST'])
 def offers_show():
     """Submit a new offer on a location to make an investment.
         User sees all offers made so far omn investment properties."""

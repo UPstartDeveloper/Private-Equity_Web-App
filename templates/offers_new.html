@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="POST" action="/offers_new">
+<form method="POST" action="/offers_show">
     <fieldset>
         <legend>Make an Offer on This Property</legend>
         <!-- TITLE -->
@@ -10,9 +10,9 @@
         Enter your offering amount: $<input type="text" name="offering"><br>
         Enter email:<input type="text" name="email"><br>
         Enter location of property:<input type="text" name="location"><br>
-        <form action="{{ url_for('offers_show') }}">
+
+        <form action="{{ url_for('offers_show') }}" method="GET">
             <button type="submit">Submit!</button>
         </form>
-
 </form>
 {% endblock %}
