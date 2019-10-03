@@ -73,6 +73,9 @@ def offers_show():
     # Insert into PyMongo database
     offers.insert_one(new_offer)
 
+    # display all previous offers
+    return render_template('offers_show.html', offers=offers.find())
+
 
 if __name__ == '__main__':
     app.run(debug=True)

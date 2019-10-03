@@ -1,0 +1,24 @@
+<!-- templates/offers_show.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Offers</h1>
+    <h3>Thanks for choosing Homely Properties!</h3>
+    <h4>Here are the offers you have made so far.<br>
+        You will be notified via email when your offer has finished the approval process.
+    </h4>
+    <ol>
+    {% for offer in offers %}
+        {% if offer.name %}
+            <li><p>Name: {{ offer.name }}</p>
+            <p>Offer Amount: ${{ offer.offer }}</p>
+            <p>Email: {{ offer.email }}</p>
+            <p>Location: {{ offer.location }}</p>
+        {% endif %}
+    {% endfor %}
+    </ol>
+
+
+
+
+{% endblock %}
