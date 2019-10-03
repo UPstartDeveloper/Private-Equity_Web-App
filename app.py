@@ -7,8 +7,6 @@ FLASK_APP = app  # specifying flask app
 client = MongoClient()
 db = client.Homely
 offers = db.offers
-# investments = db.investments
-# links = db.links
 
 # list of links for property images
 links = [
@@ -18,7 +16,7 @@ links = [
     "https://photos.zillowstatic.com/p_e/IS6eqr7il2cjge0000000000.jpg"
 ]
 
-# MOCK ARRAY of INVESTMENT DEALS
+# MOCK ARRAY of INVESTMENT DEALS *USE OF API FOR THIS COMING SOON
 investments = [
     {'name': 'Dallas, TX Property',
      'picture': links[0],
@@ -55,15 +53,26 @@ def investments_index():
                            links=links)
 
 
-@app.route('/investments/new', methods=['GET'])
+@app.route('/investments/new')
+def investments_new_form():
+    """Render form to enter offer on a property."""
+    name = request.form.get('name')
+    offering = request.form.get('offering')
+    return render_template('investments_new.html',
+                           name=name,
+                           offering=offering)
+
+
+@app.route('/investments/', methods=['GET', 'POST'])
 def investments_new():
     """Submit a new offer on a location to make an investment."""
-    if request.method == 'GET':
-        name = request.form.get('name')
-        offering = request.form.get('offering')
-        return render_template('investments_new.html',
-                                name=name,
-                                offering=offering)
+    # Make a new JSON form form data
+    new_offer = {
+        "name": request.form.get('name'),
+        "offer": request.form.get('offering')
+    }
+    # Insert into PyMongo database
+    offers.insert_one(new_offer)
 
 
 if __name__ == '__main__':
