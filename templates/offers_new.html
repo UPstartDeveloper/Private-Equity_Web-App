@@ -8,7 +8,11 @@
         <!-- TITLE -->
         Name: <input type="text" name="name"><br>
         Enter your Offering: $<input type="text" name="offering"><br>
-        <button type="submit">Submit!</button>
+        Enter email:<input type="text" name="email"><br>
+        Enter location of property:<input type="text" name="location"><br>
+        <form action="{{ url_for('offers_show') }}">
+            <button type="submit">Submit!</button>
+        </form>
 
 </form>
 {% endblock %}

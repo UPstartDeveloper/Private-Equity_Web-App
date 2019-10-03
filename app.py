@@ -66,7 +66,9 @@ def offers_show():
     # Make a new JSON form form data
     new_offer = {
         "name": request.form.get('name'),
-        "offer": request.form.get('offering')
+        "offer": request.form.get('offering'),
+        "email": request.form.get('email'),
+        "location": request.form.get('location')
     }
     # Insert into PyMongo database
     offers.insert_one(new_offer)
