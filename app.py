@@ -64,11 +64,11 @@ def offers_new():
 @app.route('/offers_show', methods=['POST'])
 def offers_show():
     """Submit a new offer on a location to make an investment.
-        User sees all offers made so far omn investment properties."""
+        User sees all offers made so far on investment properties."""
     # Make a new JSON form form data
     new_offer = {
         "name": request.form.get('name'),
-        "offer": request.form.get('offering'),
+        "offer": request.form.get('offer'),
         "email": request.form.get('email'),
         "location": request.form.get('location')
     }
