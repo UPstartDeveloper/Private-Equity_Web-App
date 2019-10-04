@@ -16,8 +16,13 @@ class HomelyTests(TestCase):
         """Test the properties homepage."""
         result = self.client.get('/')
         self.assertEqual(result.status, '200 OK')
-        self.assertIn(b'Homely', result.data)
+        self.assertIn(b'Welcome', result.data)
 
+    def test_offers_new(self):
+        """Test the new offer creation page."""
+        result = self.client.get('/offers_new')
+        self.assertEqual(result.status, '200 OK')
+        self.assertIn(b'Make an Offer', result.data)
 
 if __name__ == '__main__':
     unittest_main()
