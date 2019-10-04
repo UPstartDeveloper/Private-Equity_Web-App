@@ -1,11 +1,13 @@
 from flask import Flask, render_template, url_for, redirect, request
 from pymongo import MongoClient
+import os
 
 app = Flask(__name__)
 FLASK_APP = app  # specifying flask app
 
-client = MongoClient()
-db = client.Homely
+host = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/Homely')
+client = MongoClient(host=host)
+db = client.get_default_database()
 offers = db.offers
 
 # list of links for property images
