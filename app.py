@@ -79,27 +79,27 @@ def offers_new():
     return render_template('offers_new.html')
 
 
-@app.route('/offers_show', methods=['POST', 'GET'])
+@app.route('/offers_show', methods=['POST'])
 def offers_show():
     """User sees all offers made so far on investment properties."""
     # Submit a new offer on a location to make an investment.
-    if request.method == 'POST':
-        # Make a new JSON form form data
-        new_offer = {
-            "name": request.form.get('name'),
-            "offer": request.form.get('offer'),
-            "email": request.form.get('email'),
-            "location": request.form.get('location')
-        }
-        # Insert into PyMongo database
-        offers.insert_one(new_offer)
+    # Make a new JSON form form data
+    new_offer = {
+        "name": request.form.get('name'),
+        "offer": request.form.get('offer'),
+        "email": request.form.get('email'),
+        "location": request.form.get('location')
+    }
+    # Insert into PyMongo database
+    offers.insert_one(new_offer)
 
-        # display all previous offers
-        return render_template('offers_show.html', offers=offers.find())
+    # display all previous offers
+    return render_template('offers_show.html', offers=offers.find())
 
-    # user wants to see all offers previous made on a property
-    elif request.method == 'GET':
-        return render_template('offers_show.html', offers=offers.find())
+
+@app.route('/offers_show', methods=['GET'])
+def offers_show_all():
+    return render_template('offers_show.html', offers=offers.find())
 
 
 if __name__ == '__main__':
