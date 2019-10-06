@@ -1,9 +1,14 @@
 from flask import Flask, render_template, url_for, redirect, request
 from pymongo import MongoClient
 import os
+from flask_compress import Compress
 
 app = Flask(__name__)
 FLASK_APP = app  # specifying flask app
+COMPRESS_MIMETYPES = ['text/html']
+COMPRESS_LEVEL = 6
+COMPRESS_MIN_SIZE = 500
+Compress(app)
 
 host = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/Homely')
 client = MongoClient(host=f'{host}?retryWrites=false')
