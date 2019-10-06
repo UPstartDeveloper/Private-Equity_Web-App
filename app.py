@@ -38,25 +38,25 @@ links = [
 
 # MOCK ARRAY of PROPERTY DEALS *USE OF API FOR THIS COMING SOON
 properties = [
-    {'name': 'Dallas, TX Property',
+    {"name": "Dallas, TX Property",
      'picture': links[0],
      'address': '4432 Bowser Ave, Dallas, TX 75219',
      'value': 1500000,
      'status': 'OPEN',
      'num_units': 11},
-    {'name': 'Austin, TX Property',
+    {"name": "Austin, TX Property",
      'picture': links[1],
      'address': '701 Baylor St, Austin, TX 78703',
      'value': 1700000,
      'status': 'OPEN',
      'num_units': 6},
-    {'name': 'Fort Worth, TX Property',
+    {"name": "Fort Worth, TX Property",
      'picture': links[2],
      'address': '10294 Western Oaks Rd, Fort Worth, TX 76108',
      'value': 2700000,
      'status': 'CLOSED',
      'num_units': 12},
-    {'name': 'Houston, TX Property',
+    {"name": "Houston, TX Property",
      'picture': links[3],
      'address': '3709 Montrose Blvd, Houston, TX 770069',
      'value': 1000000,
@@ -76,7 +76,7 @@ def properties_index():
 @app.route('/offers_new')
 def offers_new():
     '''Render form to enter offer on a property.'''
-    return render_template('offers_new.html')
+    return render_template('offers_new.html', properties=properties)
 
 
 @app.route('/offers_show', methods=['GET', 'POST'])
@@ -84,7 +84,7 @@ def offers_show():
     """Submit a new offer on a location to make an investment.
        User sees all offers made so far on investment properties.
     """
-    # Make a new JSON form form data
+    # Make a new JSON from form data
     new_offer = {
         "name": request.form.get('name'),
         "offer": request.form.get('offer'),

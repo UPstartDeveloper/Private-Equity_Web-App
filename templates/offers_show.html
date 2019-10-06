@@ -4,9 +4,12 @@
 {% block content %}
     <h1>Offers</h1>
     <h3>Thanks for choosing Homely Properties!</h3>
-    <h4>Here are the offers you have made so far.<br>
+    <h4>Here are the offers we are currenly processing.<br>
         You will be notified via email when your offer has finished the approval process.
     </h4>
+    <form action="{{ url_for('properties_index') }}" method="GET">
+        <button type="go-home">Go Back to Properties</button>
+    </form>
     <ol>
     {% for offer in offers %}
         {% if offer.name %}
@@ -17,8 +20,5 @@
         {% endif %}
     {% endfor %}
     </ol>
-    <form action="{{ url_for('properties_index') }}" method="GET">
-        <button type="go-home">Go Back to Properties</button>
-    </form>
 
 {% endblock %}

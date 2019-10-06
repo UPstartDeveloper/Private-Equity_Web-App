@@ -4,7 +4,10 @@
 {% block content %}
     <h1>Welcome to Homely Properties!</h1>
     <h2>Secure your Financial Future</h2>
-
+    <!-- CREATE an OFFER -->
+    <form action="{{ url_for('offers_new') }}">
+        <button type="create">Invest Now!</button>
+    </form>
     <ol>
     {% for property in properties %}
             <li><h3>{{ property.name }}</h3>
@@ -13,13 +16,9 @@
             <h5>${{ property.value }}</h5>
             <p>Status: {{ property.status }}</p>
             {% if property.status == "OPEN" %}
-                <!-- CREATE an OFFER -->
-                <form action="{{ url_for('offers_new') }}">
-                    <button type="create">Invest Now!</button>
-                </form>
-                <!-- SEE ALL OFFERS on a property, also used to update -->
+                <!-- VIEW MORE INFO on a property -->
                 <form action="{{ url_for('offers_show') }}">
-                    <button type="read">See All Current Offers</button>
+                    <button type="read">Show Me More!</button>
                 </form>
             {% endif %}
         </li>
