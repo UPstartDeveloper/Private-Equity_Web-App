@@ -2,15 +2,26 @@ from flask import Flask, render_template, url_for, redirect, request
 from pymongo import MongoClient
 import os
 # from flask_compress import Compress
+# from flask_cache import Cache
 
 app = Flask(__name__)
 FLASK_APP = app  # specifying flask app
 '''
+# Flask Compress use inspired by
+# https://damyanon.net/post/flask-series-optimizations/
 COMPRESS_MIMETYPES = ['text/html']
 COMPRESS_LEVEL = 6
 COMPRESS_MIN_SIZE = 500
 Compress(app)
+
+# Flask Cache use inspired by
+# https://damyanon.net/post/flask-series-optimizations/
+cache = Cache()
+CACHE_TYPE = 'simple'
+# configure_app(app)
+cache.init_app(app)
 '''
+
 
 host = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/Homely')
 client = MongoClient(host=f'{host}?retryWrites=false')
