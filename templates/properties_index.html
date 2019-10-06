@@ -12,7 +12,6 @@
             <h4>{{ property.address }}</h4>
             <h5>${{ property.value }}</h5>
             <p>Status: {{ property.status }}</p>
-            <p>{{ property.address }}</p>
             {% if property.status == "OPEN" %}
                 <!-- CREATE an OFFER -->
                 <form action="{{ url_for('offers_new') }}">
