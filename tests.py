@@ -36,7 +36,12 @@ class HomelyTests(TestCase):
         """Test the properties homepage."""
         result = self.client.get('/')
         self.assertEqual(result.status, '200 OK')
-        self.assertIn(b'Welcome', result.data)
+        self.assertIn(b'Offers', result.data)
+
+    def test_show_offers(self):
+        """Test showing offers on a property."""
+        result = self.client.get('/offers_show')
+        self.assertEqual(result.status, '200 OK')
 
     def test_offers_new(self):
         """Test the new offer creation page."""
