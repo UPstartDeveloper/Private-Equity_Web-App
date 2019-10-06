@@ -79,10 +79,11 @@ def offers_new():
     return render_template('offers_new.html')
 
 
-@app.route('/offers_show', methods=['POST'])
+@app.route('/offers_show', methods=['GET', 'POST'])
 def offers_show():
-    """User sees all offers made so far on investment properties."""
-    # Submit a new offer on a location to make an investment.
+    """Submit a new offer on a location to make an investment.
+       User sees all offers made so far on investment properties.
+    """
     # Make a new JSON form form data
     new_offer = {
         "name": request.form.get('name'),
@@ -99,6 +100,7 @@ def offers_show():
 
 @app.route('/offers_show', methods=['GET'])
 def offers_show_all():
+    """Users sees all previously made offers on a property from other users."""
     return render_template('offers_show.html', offers=offers.find())
 
 
