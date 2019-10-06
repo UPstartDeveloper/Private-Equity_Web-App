@@ -7,8 +7,13 @@
     <h4>Here are the offers we are currenly processing.<br>
         You will be notified via email when your offer has finished the approval process.
     </h4>
+    <!-- GO BACK TO PROPERTIES INDEX -->
     <form action="{{ url_for('properties_index') }}" method="GET">
         <button type="go-home">Go Back to Properties</button>
+    </form>
+    <!-- CREATE NEW OFFER -->
+    <form action="{{ url_for('offers_new') }}">
+        <button type="create">Invest Now!</button>
     </form>
     <ol>
     {% for offer in offers %}

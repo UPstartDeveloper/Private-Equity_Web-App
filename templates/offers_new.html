@@ -15,8 +15,13 @@
                 <option value="{{ property.name }}"> {{ property.name }} [{{property.status }}]</option>
                 {% endfor %}
             </select><br>
+        <!-- SUBMIT NEW OFFER -->
         <form action="{{ url_for('offers_show') }}" method="GET">
             <button type="submit">Submit!</button>
+        </form>
+        <!-- CANCEL OFFER -->
+        <form action="{{ url_for('properties_index') }}" method="GET">
+            <button type="submit">Cancel</button>
         </form>
 </form>
 {% endblock %}
