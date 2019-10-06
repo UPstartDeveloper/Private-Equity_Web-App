@@ -14,8 +14,13 @@
             <p>Status: {{ property.status }}</p>
             <p>{{ property.address }}</p>
             {% if property.status == "OPEN" %}
+                <!-- CREATE an OFFER -->
                 <form action="{{ url_for('offers_new') }}">
                     <button type="create">Invest Now!</button>
+                </form>
+                <!-- SEE ALL OFFERS on a property, also used to update -->
+                <form action="{{ url_for('offers_show') }}">
+                    <button type="read">See All Current Offers</button>
                 </form>
             {% endif %}
         </li>
