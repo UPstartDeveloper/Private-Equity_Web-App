@@ -83,7 +83,7 @@ def offers_show():
 '''
 
 
-@app.route('/offers_show', methods=['GET'])
+@app.route('/offers_show_every', methods=['GET'])
 def offers_show_every():
     """Submit a new offer on a location to make an investment.
        Users sees all previously made offers on a property from other users.
