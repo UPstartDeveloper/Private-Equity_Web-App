@@ -7,7 +7,7 @@ dummy data to use in testing create, update, and delete routes
 (U and D not yet made)
 Inspiration taken from Playlister tutorial.
 '''
-# sample_offer_id = ObjectId('5d55cffc4a3d4031f42827a3')
+sample_offer_id = ObjectId('5d55cffc4a3d4031f42827a3')
 sample_offer = {
     'name': 'Muhammad Ali',
     'offer': '4500',
@@ -36,7 +36,7 @@ class HomelyTests(TestCase):
         """Test the properties homepage."""
         result = self.client.get('/')
         self.assertEqual(result.status, '200 OK')
-        self.assertIn(b'Offers', result.data)
+        self.assertIn(b'Welcome', result.data)
 
     def test_show_offers(self):
         """Test showing offers on a property."""
@@ -57,6 +57,15 @@ class HomelyTests(TestCase):
         # After submitting, should redirect to the offers_show page.
         self.assertEqual(result.status, '200 OK')
         mock_insert.assert_called_with(sample_offer)
+
+    @mock.patch('pymongo.collection.Collection.find_one')
+    def test_edit_offer(self, mock_find):
+        """Test editing a single offer."""
+        mock_find.return_value = sample_offer
+
+        result = self.client.get(f'/offers/{sample_offer_id}/edit')
+        self.assertEqual(result.status, '200 OK')
+        self.assertIn('Make an Offer', result.data)
 
 
 if __name__ == '__main__':

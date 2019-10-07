@@ -1,27 +1,10 @@
 from flask import Flask, render_template, url_for, redirect, request
 from pymongo import MongoClient
 import os
-# from flask_compress import Compress
-# from flask_cache import Cache
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 FLASK_APP = app  # specifying flask app
-'''
-# Flask Compress use inspired by
-# https://damyanon.net/post/flask-series-optimizations/
-COMPRESS_MIMETYPES = ['text/html']
-COMPRESS_LEVEL = 6
-COMPRESS_MIN_SIZE = 500
-Compress(app)
-
-# Flask Cache use inspired by
-# https://damyanon.net/post/flask-series-optimizations/
-cache = Cache()
-CACHE_TYPE = 'simple'
-# configure_app(app)
-cache.init_app(app)
-'''
-
 
 host = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/Homely')
 client = MongoClient(host=f'{host}?retryWrites=false')
@@ -104,5 +87,29 @@ def offers_show_all():
     return render_template('offers_show.html', offers=offers.find())
 
 
-if __name__ == '__main__':
+@app.route('/offers/<offer_id>/edit')
+def offers_edit(offer_id):
+    """Show the edit form for an offer."""
+    offer = offers.find_one({'_id': ObjectId(offer_id)})
+    return render_template('offers_edit.html', offer=offer,
+                           properties=properties)
+
+
+@app.route('/offers_show', methods=['POST'])
+def offers_update(offer_id):
+    """Submit an edited offer."""
+    updated_offer = {
+        'name': request.form.get('name'),
+        'offer': request.form.get('offer'),
+        'email': request.form.get('email'),
+        'location': request.form.get('location')
+    }
+    offers.update_one(
+        {'_id': ObjectId(offer_id)},
+        {'$set': updated_offer})
+    return redirect(url_for('offers_show', offer_id=offer_id,
+                    offers=offers.find()))
+
+
+if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))

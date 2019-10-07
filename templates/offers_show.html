@@ -1,5 +1,5 @@
 <!-- templates/offers_show.html -->
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
     <h1>Offers</h1>
@@ -7,23 +7,36 @@
     <h4>Here are the offers we are currenly processing.<br>
         You will be notified via email when your offer has finished the approval process.
     </h4>
-    <!-- GO BACK TO PROPERTIES INDEX -->
-    <form action="{{ url_for('properties_index') }}" method="GET">
-        <button type="go-home">Go Back to Properties</button>
-    </form>
     <!-- CREATE NEW OFFER -->
     <form action="{{ url_for('offers_new') }}">
         <button type="create">Invest Now!</button>
+    </form>
+    <!-- GO BACK TO PROPERTIES INDEX -->
+    <form action="{{ url_for('properties_index') }}" method="GET">
+        <button type="go-home">Go Back to Properties</button>
     </form>
     <ol>
     {% for offer in offers %}
         {% if offer.name %}
             <li><p>Name: {{ offer.name }}</p>
-            <p>Offer Amount: ${{ offer.offer }}</p>
+            <p>Offer Amount:
+                {% if offer.offer %}
+                    ${{ offer.offer }}
+                {% endif %}
+            </p>
             <p>Email: {{ offer.email }}</p>
             <p>Location: {{ offer.location }}</p>
+            <!-- EDIT THIS OFFERING -->
+            <form action="/offers/{{ offer._id }}/edit">
+                <button type="edit">Edit This Offering</button>
+            </form>
+            <!-- DELETE THIS OFFERING -->
         {% endif %}
     {% endfor %}
+    <!-- GO BACK TO PROPERTIES INDEX -->
+    <form action="{{ url_for('properties_index') }}" method="GET"><br>
+        <button type="go-home">Go Back to Properties</button>
+    </form>
     </ol>
 
 {% endblock %}
