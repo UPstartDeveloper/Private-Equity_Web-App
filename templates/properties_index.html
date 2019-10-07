@@ -17,7 +17,7 @@
             <p>Status: {{ property.status }}</p>
             {% if property.status == "OPEN" %}
                 <!-- VIEW MORE INFO on a property -->
-                <form action="{{ url_for('offers_show') }}">
+                <form action="{{ url_for('offers_show_all') }}">
                     <button type="read">Show Me More!</button>
                 </form>
             {% endif %}

@@ -1,0 +1,29 @@
+<!-- templates/offer_show.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Offer Description</h1>
+    <h3>Name: {{ offer.name }}</h3>
+    <p>Location: {{ offer.location }}</p>
+    <p>Email: {{ offer.email }}</p>
+    <p>Offer Amount:
+        {% if offer.offer %}
+            ${{ offer.offer }}
+        {% endif %}
+    </p>
+    <!-- EDIT THIS OFFERING -->
+        <form action="/offers/{{ offer._id }}/edit">
+            <button type="edit">Edit This Offering</button>
+        </form>
+    <!-- DELETE THIS OFFERING -->
+
+    <!-- GO BACK TO ALL OFFERS-->
+    <form action="{{ url_for('offers_show_all') }}" method="GET"><br>
+        <button type="go-offers">View All Offers</button>
+    </form>
+
+    <!-- GO BACK TO PROPERTIES INDEX -->
+    <form action="{{ url_for('properties_index') }}" method="GET"><br>
+        <button type="go-home">Go Back to Properties</button>
+    </form>
+{% endblock %}
