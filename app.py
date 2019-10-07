@@ -81,6 +81,7 @@ def offers_show():
     return render_template('offers_show.html', offer_id=offer_id)
 '''
 
+
 @app.route('/offers_show', methods=['GET', 'POST'])
 def offers_show_all():
     """Submit a new offer on a location to make an investment.
@@ -114,8 +115,8 @@ def offers_edit(offer_id):
     return render_template('offers_edit.html', offer=offer,
                            properties=properties)
 
-'''
-@app.route('/offers_show', methods=['POST'])
+
+@app.route('/offers/<offer_id>', methods=['POST'])
 def offers_update(offer_id):
     """Submit an edited offer."""
     updated_offer = {
@@ -127,9 +128,9 @@ def offers_update(offer_id):
     offers.update_one(
         {'_id': ObjectId(offer_id)},
         {'$set': updated_offer})
-    return redirect(url_for('offers_show', offer_id=offer_id,
+    return redirect(url_for('offers_show_single', offer_id=offer_id,
                     offers=offers.find()))
 
-'''
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))

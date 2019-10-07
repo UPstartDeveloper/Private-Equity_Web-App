@@ -3,7 +3,7 @@
 
 {% block content %}
 <h2>Edit This Offer</h2>
-<form method="POST" action="/offers_show">
+<form method="POST" action="/offers/{{ offer._id }}">
     {% include "partials/offers_form.html" %}
 </form>
 {% endblock %}
