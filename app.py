@@ -61,6 +61,7 @@ def offers_new():
     '''Render form to enter offer on a property.'''
     return render_template('offers_new.html', properties=properties)
 
+
 '''
 @app.route('/offers_new', methods=['GET', 'POST'])
 def offers_show():
@@ -87,8 +88,11 @@ def offers_show_all():
     """Submit a new offer on a location to make an investment.
        Users sees all previously made offers on a property from other users.
     """
+    if request.method == 'GET':
+        return render_template('offers_show.html', offers=offers.find())
+
     # Make a new JSON from form data
-    if request.method == 'POST':
+    elif request.method == 'POST':
         new_offer = {
             "name": request.form.get('name'),
             "offer": request.form.get('offer'),
@@ -97,9 +101,6 @@ def offers_show_all():
         }
         # Insert into PyMongo database
         offer_id = offers.insert_one(new_offer).inserted_id
-        return render_template('offers_show.html', offers=offers.find())
-
-    elif request.method == 'GET':
         return render_template('offers_show.html', offers=offers.find())
 
 # New routes below 10/6/19
