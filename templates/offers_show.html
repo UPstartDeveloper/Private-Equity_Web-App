@@ -22,17 +22,6 @@
                 <p>Location: {{ offer.location }}</p>
         {% endif %}
     {% endfor %}
-            {# <p>Email: {{ offer.email }}</p>
-            <p>Offer Amount:
-                {% if offer.offer %}
-                    ${{ offer.offer }}
-                {% endif %} #}
-            </p>
-            <!-- EDIT THIS OFFERING -->
-            {#<form action="/offers/{{ offer._id }}/edit">
-                <button type="edit">Edit This Offering</button>
-            </form> #}
-            <!-- DELETE THIS OFFERING -->
 
     <!-- GO BACK TO PROPERTIES INDEX -->
     <form action="{{ url_for('properties_index') }}" method="GET"><br>

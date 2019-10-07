@@ -132,5 +132,12 @@ def offers_update(offer_id):
                     offers=offers.find()))
 
 
+@app.route('/offers/<offer_id>/delete', methods=['POST'])
+def offers_delete(offer_id):
+    """Delete one offer."""
+    offers.delete_one({'_id': ObjectId(offer_id)})
+    return redirect(url_for('offers_show_all'))
+
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
