@@ -145,7 +145,7 @@ def offers_update(offer_id):
 def offers_delete(offer_id):
     """Delete one offer."""
     offers.delete_one({'_id': ObjectId(offer_id)})
-    return redirect(url_for('offers_show_all'))
+    return redirect(url_for('offers_show_every'))
 
 
 if __name__ == "__main__":
