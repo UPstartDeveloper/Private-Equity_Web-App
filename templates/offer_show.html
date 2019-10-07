@@ -15,14 +15,14 @@
         <form action="/offers/{{ offer._id }}/edit">
             <button type="edit">Edit This Offering</button>
         </form>
-        
+
     <!-- DELETE THIS OFFERING -->
         <form method='POST' action='/offers/{{ offer._id }}/delete'>
             <button type='delete'>Delete This Offering</button>
         </form>
 
     <!-- GO BACK TO ALL OFFERS-->
-    <form action="{{ url_for('offers_show_all') }}" method="GET"><br>
+    <form action="{{ url_for('offers_show_every') }}" method="GET"><br>
         <button type="go-offers">View All Offers</button>
     </form>
 
