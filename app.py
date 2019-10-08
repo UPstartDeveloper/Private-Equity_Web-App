@@ -62,27 +62,6 @@ def offers_new():
     return render_template('offers_new.html', properties=properties)
 
 
-'''
-@app.route('/offers_new', methods=['GET', 'POST'])
-def offers_show():
-    """Submit a new offer on a location to make an investment.
-       User sees all offers made so far on investment properties.
-    """
-    # Make a new JSON from form data
-    new_offer = {
-        "name": request.form.get('name'),
-        "offer": request.form.get('offer'),
-        "email": request.form.get('email'),
-        "location": request.form.get('location')
-    }
-    # Insert into PyMongo database
-    offer_id = offers.insert_one(new_offer).inserted_id
-
-    # redirect to page showing new offer only
-    return render_template('offers_show.html', offer_id=offer_id)
-'''
-
-
 @app.route('/offers_show_every', methods=['GET'])
 def offers_show_every():
     """Submit a new offer on a location to make an investment.
