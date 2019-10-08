@@ -5,12 +5,23 @@
         <meta charset="utf-8">
         <title>Homely Properties</title>
         <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+        <!-- Latest compiled and minified CSS -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
     </head>
     <body>
 
-        {% block content %}
-            {# BODY CONTENT GOES HERE #} 
-        {% endblock %}
+        {% include 'partials/navbar.html' %}
+        <div class="container">
+            {% block content %}
+                {# BODY CONTENT GOES HERE #}
+            {% endblock %}
+        </div>
+
+        <!-- Latest complied and minified JavaScript -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+
 
     </body>
 </html>

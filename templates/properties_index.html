@@ -9,19 +9,23 @@
         <button type="create">Invest Now!</button>
     </form>
     <ol>
-    {% for property in properties %}
-            <li><h3>{{ property.name }}</h3>
-            <img src= {{ property.picture }} />
-            <h4>{{ property.address }}</h4>
-            <h5>${{ property.value }}</h5>
-            <p>Status: {{ property.status }}</p>
-            {% if property.status == "OPEN" %}
-                <!-- VIEW MORE INFO on a property -->
-                <form action="/offers_show_every" method="GET">
-                    <button type="read">Show Me More!</button>
-                </form>
-            {% endif %}
-        </li>
-    {% endfor %}
+    {# <!-- unrequired div <div class="row"> -->#}
+        {% for property in properties %}
+            {# <!-- unrequired div <div class="col-md-3">--> #}
+                <li><h3>{{ property.name }}</h3>
+                    <img src= {{ property.picture }} />
+                    <h4>{{ property.address }}</h4>
+                    <h5>${{ property.value }}</h5>
+                    <p>Status: {{ property.status }}</p>
+                    {% if property.status == "OPEN" %}
+                        <!-- VIEW MORE INFO on a property -->
+                        <form action="/offers_show_every" method="GET">
+                            <button type="read">Show Me More!</button>
+                        </form>
+                    {% endif %}
+            {# <!--</div> --> #}
+                </li>
+        {% endfor %}
+    {#<!--</div>--> #}
     </ol>
 {% endblock %}
