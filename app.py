@@ -86,8 +86,6 @@ def offers_show_all():
     offer_id = offers.insert_one(new_offer).inserted_id
     return render_template('offers_show.html', offers=offers.find())
 
-# New routes below 10/6/19
-
 
 @app.route('/offers/<offer_id>')
 def offers_show_single(offer_id):
