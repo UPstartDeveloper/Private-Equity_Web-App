@@ -3,24 +3,24 @@
 <fieldset>
     <legend>Make an Offer on This Property</legend>
     <!-- TITLE -->
-    Name: <input type="text" name="name"><br>
+    <p>Name: <input type="text" name="name"></p>
     <!-- AMOUNT -->
-    Enter your offering amount: $<input type="text" name="offering"><br>
+    <p>Enter your offering amount: $<input type="text" name="offering"></p>
     <!-- EMAIL -->
-    Enter email:<input type="text" name="email"><br>
+    <p>Enter email:<input type="text" name="email"></p>
     <!-- LOCATION -->
-    Enter location of property. Offers can only be made on OPEN deals:
+    <p>Enter location of property. Offers can only be made on OPEN deals:
         <select name="location">
             {% for property in properties %}
                 <option value="{{ property.name }}"> {{ property.name }} [{{property.status }}]</option>
             {% endfor %}
-        </select><br>
+        </select>
 </fieldset>
     <!-- SUBMIT OFFER -->
     <form action="{{ url_for('offers_show_every') }}" method="GET">
-        <button type="submit">Submit!</button>
+        <input type="submit" value="Submit"></input>
     </form>
     <!-- CANCEL OFFER -->
     <form action="{{ url_for('offers_show_every') }}" method="GET">
-        <button type="submit">Cancel</button>
+        <button>Cancel</button>
     </form>
