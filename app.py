@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 FLASK_APP = app  # specifying flask app
 
-host = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/Homely')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Homely')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 offers = db.offers
