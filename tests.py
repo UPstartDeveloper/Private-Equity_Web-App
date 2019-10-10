@@ -58,7 +58,7 @@ class HomelyTests(TestCase):
         result = self.client.post('offers_show', data=sample_form_data)
 
         # After submitting, should redirect to the offers_show page.
-        self.assertEqual(result.status, '200 OK')
+        self.assertEqual(result.status, '302 FOUND')
         mock_insert.assert_called_with(sample_offer)
 
     @mock.patch('pymongo.collection.Collection.find_one')
