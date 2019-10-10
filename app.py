@@ -84,7 +84,7 @@ def offers_show_all():
     }
     # Insert into PyMongo database
     offer_id = offers.insert_one(new_offer).inserted_id
-    return render_template('offers_show.html', offers=offers.find())
+    return redirect(url_for('offers_show_every'))
 
 
 @app.route('/offers/<offer_id>')
